@@ -1,0 +1,18 @@
+---
+- name: setup httpd to node-4,5
+  hosts: app
+  become: yes
+  tasks:
+    - ansible.builtin.import_role:
+        name: httpd_myip
+
+- name: setup nginx to node-6
+  hosts: other
+  become: yes
+  tasks:
+    - ansible.builtin.import_role:
+        name: nginx_lb
+      vars:
+        backend_server_list:
+          - node4
+          - node5

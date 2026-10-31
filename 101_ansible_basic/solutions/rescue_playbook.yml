@@ -1,0 +1,28 @@
+- name: using block, rescue, always statement
+  hosts: node1
+  become: yes
+  tasks:
+    - block:
+        - name: block task
+          ansible.builtin.debug:
+            msg: "message from block"
+
+        - name: check error flag in block
+          ansible.builtin.assert:
+            that:
+              - error_flag == 'no'
+
+      rescue:
+        - name: rescue task
+          ansible.builtin.debug:
+            msg: "message from rescue"
+
+        - name: check error flag in rescue
+          ansible.builtin.assert:
+            that:
+              - error_flag == 'no'
+
+      always:
+        - name: always task
+          ansible.builtin.debug:
+            msg: "message from always"

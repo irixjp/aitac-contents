@@ -1,0 +1,19 @@
+---
+- hosts: web
+  gather_facts: no
+  tasks:
+    - name: print group_vars
+      ansible.builtin.debug:
+        var: vars_by_group_vars
+
+    - name: print host vars
+      ansible.builtin.debug:
+        var: vars_by_host_vars
+
+    - name: vars_by_group_vars + vars_by_host_vars
+      ansible.builtin.set_fact:
+        cal_result: "{{ vars_by_group_vars + vars_by_host_vars }}"
+
+    - name: print cal_vars
+      ansible.builtin.debug:
+        var: cal_result

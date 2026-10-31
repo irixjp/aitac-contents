@@ -1,0 +1,23 @@
+---
+- name: install httpd
+  ansible.builtin.dnf:
+    name: httpd
+    state: latest
+
+- name: start & enabled httpd
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: yes
+
+- name: Put index.html from template
+  ansible.builtin.template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: Copy Apache configuration file
+  ansible.builtin.copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/
+  notify:
+    - restart_apache

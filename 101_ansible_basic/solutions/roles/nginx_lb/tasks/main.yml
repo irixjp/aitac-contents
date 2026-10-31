@@ -1,0 +1,19 @@
+---
+- name: install nginx
+  ansible.builtin.dnf:
+    name: nginx
+    state: latest
+
+- ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/conf.d/backend.conf
+
+- ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- ansible.builtin.systemd:
+    name: nginx
+    state: reloaded
+    enabled: yes

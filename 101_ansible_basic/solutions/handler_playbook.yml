@@ -1,0 +1,16 @@
+---
+- name: restart httpd if httpd.conf is changed
+  hosts: node1
+  become: yes
+  tasks:
+    - name: Copy Apache configuration file
+      ansible.builtin.copy:
+        src: files/httpd.conf
+        dest: /etc/httpd/conf/
+      notify:
+        - restart_apache
+  handlers:
+    - name: restart_apache
+      service:
+        name: httpd
+        state: restarted

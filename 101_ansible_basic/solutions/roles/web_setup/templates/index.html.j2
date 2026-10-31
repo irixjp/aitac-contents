@@ -1,0 +1,11 @@
+<html><body>
+<h1>This server is running on {{ inventory_hostname }}.</h1>
+
+!Created with Ansible Role!
+
+{% if LANG == "JP" %}
+     Konnichiwa!
+{% else %}
+     Hello!
+{% endif %}
+</body></html>
