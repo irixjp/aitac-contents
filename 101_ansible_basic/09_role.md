@@ -287,16 +287,12 @@ changed: [node1]
 (省略)
 ```
 
-上記のような出力となれば成功です。node1,2,3 に対してブラウザでアクセスしてサイトの動作を確認してください。
-
-アクセス先のIPアドレスを調べるには以下のコマンドを実行します。
+上記のような出力となれば成功です。node1,2,3 に対してターミナルから `curl` でアクセスしてサイトの動作を確認してください。テンプレートから作られた `index.html` の内容が表示されるはずです。
 
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
-`curl 169.254.169.254/latest/meta-data/public-ipv4`
+`curl http://node1/`
 
-- node1: http://<自分の code-server IPアドレス>:8081
-- node2: http://<自分の code-server IPアドレス>:8082
-- node3: http://<自分の code-server IPアドレス>:8083
+node2、node3 も同じように確認してください。
 
 
 ロールを使うことで飛躍的に自動化の再利用性が高まります。これはタスクとインベントリーが完全に切り離されるためです。

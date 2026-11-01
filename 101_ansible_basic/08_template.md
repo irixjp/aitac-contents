@@ -121,14 +121,10 @@ node3 | SUCCESS => {
 `ansible web -m ansible.builtin.uri -a 'url=http://localhost/ return_content=yes'`
 
 今度の実行では、「Hello!」と挿入されたことが確認できるはずです。
-以下の手順でブラウザから確認することも可能です。
+ターミナルから `curl` でアクセスして確認することも可能です。
 
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
-`curl 169.254.169.254/latest/meta-data/public-ipv4`
-
-- node1: http://<自分の code-server IPアドレス>:8081
-- node2: http://<自分の code-server IPアドレス>:8082
-- node3: http://<自分の code-server IPアドレス>:8083
+`curl http://node1/`
 
 このようにテンプレートを使うことで、動的にファイルの生成を行うことが可能になります。この機能はとても応用範囲が広く、設定ファイルの自動生成や設定報告書の自動作成など様々な場面で活用できます。
 

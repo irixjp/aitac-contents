@@ -196,18 +196,14 @@ node2  : ok=3 changed=2 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 node3  : ok=3 changed=2 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 
-上記のような出力となれば成功です。node1,2,3 に対してブラウザでアクセスしてサイトの動作を確認してください。
+上記のような出力となれば成功です。node1,2,3 にアクセスしてサイトの動作を確認してください。
 
-アクセス先のIPアドレスを調べるには以下のコマンドを実行します。
+node1〜3 は演習環境の中だけにあるサーバーで、ブラウザからは直接アクセスできません。ターミナルから `curl` コマンドでアクセスします。
 
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
-`curl 169.254.169.254/latest/meta-data/public-ipv4`
+`curl -s http://node1/ | grep '<title>'`
 
-- node1: http://<自分の code-server IPアドレス>:8081
-- node2: http://<自分の code-server IPアドレス>:8082
-- node3: http://<自分の code-server IPアドレス>:8083
-
-apache の初期画面が表示されれば成功です。アクセス出来ない場合には設定に失敗している可能性があります。Playbookと実行コマンドを確認してください。
+node2、node3 も同じように確認してください。apache の初期画面のタイトルが表示されれば成功です。何も表示されない場合には設定に失敗している可能性があります。Playbookと実行コマンドを確認してください。
 
 
 ## タスクの追加
@@ -290,9 +286,10 @@ node2  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 node3  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 ```
 
-正常終了したら再びブラウザで3台のノードへアクセスしてください。正しく playbook が記述され、動作したのならば先程作成した `index.html` の内容が表示されるはずです。
+正常終了したら再び `curl` で3台のノードへアクセスしてください。正しく playbook が記述され、動作したのならば先程作成した `index.html` の内容が表示されるはずです。
 
-> Note: `curl` コマンドを使って `curl node1` のように実行して確認してもOKです。
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+`curl http://node1/`
 
 
 ## 冪等性(べきとうせい)
