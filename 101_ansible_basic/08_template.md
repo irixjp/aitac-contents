@@ -179,7 +179,7 @@ node1 | SUCCESS => {
 
 ```text
 node1 | SUCCESS => {
-    "msg": "1"
+    "msg": 1
 }
 ```
 
@@ -188,7 +188,7 @@ node1 | SUCCESS => {
 
 ```text
 node1 | SUCCESS => {
-    "msg": "10"
+    "msg": 10
 }
 ```
 
