@@ -203,6 +203,10 @@ node1〜3 は演習環境の中だけにあるサーバーで、ブラウザか�
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `curl -s http://node1/ | grep '<title>'`
 
+```text
+  <title>HTTP Server Test Page</title>
+```
+
 node2、node3 も同じように確認してください。apache の初期画面のタイトルが表示されれば成功です。何も表示されない場合には設定に失敗している可能性があります。Playbookと実行コマンドを確認してください。
 
 
@@ -290,6 +294,12 @@ node3  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
+
+```text
+<body>
+<h1>Apache is running fine</h1>
+</body>
+```
 
 
 ## 冪等性(べきとうせい)

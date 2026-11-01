@@ -126,6 +126,14 @@ node3 | SUCCESS => {
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
 
+```text
+<html><body>
+<h1>This server is running on node1.</h1>
+
+     Hello!
+</body></html>
+```
+
 このようにテンプレートを使うことで、動的にファイルの生成を行うことが可能になります。この機能はとても応用範囲が広く、設定ファイルの自動生成や設定報告書の自動作成など様々な場面で活用できます。
 
 

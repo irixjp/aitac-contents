@@ -292,6 +292,14 @@ changed: [node1]
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
 
+```text
+<html><body>
+<h1>This server is running on node1.</h1>
+
+     Konnichiwa!
+</body></html>
+```
+
 node2、node3 も同じように確認してください。
 
 
