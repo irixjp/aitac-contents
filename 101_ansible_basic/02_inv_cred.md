@@ -55,13 +55,13 @@ tmpfs           1.8G   16M  1.8G   1% /var/log/journal
 `ansible --version`
 
 ```text
-ansible [core 2.20.0]
+ansible [core 2.21.5]
   config file = /student/.ansible.cfg
   configured module search path = ['/student/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
   ansible python module location = /student/.local/lib/python3.12/site-packages/ansible
   ansible collection location = /student/.ansible/collections:/usr/share/ansible/collections
   executable location = /student/.local/bin/ansible
-  python version = 3.12.11 (main, Aug 14 2025, 00:00:00) [GCC 14.3.1 20250617 (Red Hat 14.3.1-2)] (/usr/bin/python3)
+  python version = 3.12.15 (main, Oct  1 2026, 00:00:00) [GCC 14.4.1 20260724 (Red Hat 14.4.1-3)] (/usr/bin/python3)
   jinja version = 3.1.6
   pyyaml version = 6.0.3 (with libyaml v0.2.5)
 ```

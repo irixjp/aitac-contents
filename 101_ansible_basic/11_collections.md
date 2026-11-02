@@ -150,6 +150,8 @@ collections:
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection install -r collections/requirements.yml`
 
+このコマンドで警告（`requires_ansible metadata`）が表示される場合もありますが無視してください。
+
 ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection list | grep sample_collection`
 
