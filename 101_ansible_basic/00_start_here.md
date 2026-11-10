@@ -32,7 +32,7 @@
 
 本演習環境の素材は以下で管理されています。
 
-- https://github.com/irixjp/aitac-automation
+- https://github.com/irixjp/aitac-contents
 
 
 本演習環境で利用しているソフトウェアは以下になります。

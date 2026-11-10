@@ -15,7 +15,7 @@ Ansible はテンプレート機能を備えており、動的なファイル作
 
 `~/working/templates/index.html.j2` ファイルを作成し、中身を以下となるように編集してください。このファイルが `jinja2` テンプレートファイルになります。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/templates/index.html.j2`
 ```jinja2
 <html><body>
@@ -36,7 +36,7 @@ Ansible はテンプレート機能を備えており、動的なファイル作
 
 詳細な解説を行う前に、まず `~/working/template_playbook.yml` を作成して、実際にテンプレートを動かしてみましょう。以下のように `template_playbook.yml` を編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/template_playbook.yml`
 ```yaml
 ---
@@ -65,10 +65,10 @@ Ansible はテンプレート機能を備えており、動的なファイル作
 
 ではこの playbook を動かしてみます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook template_playbook.yml -e 'LANG=JP'`
 
 ```text
@@ -82,7 +82,7 @@ changed: [node1]
 
 どのような結果になったかを確認してみましょう。以下のコマンドを実行してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible web -m ansible.builtin.uri -a 'url=http://localhost/ return_content=yes'`
 
 このコマンドは [`ansible.builtin.uri`](https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/uri_module.html) モジュールという HTTPリクエストを発行するモジュールを利用しています。このモジュールを使って、それぞれのノード上から `http://localhost/` へアクセスしてコンテンツを取得しています。
@@ -114,16 +114,16 @@ node3 | SUCCESS => {
 
 では、条件を変えて `LANG == "JP"` が成立しない場合にはどうなるか確認してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook template_playbook.yml -e 'LANG=EN'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible web -m ansible.builtin.uri -a 'url=http://localhost/ return_content=yes'`
 
 今度の実行では、「Hello!」と挿入されたことが確認できるはずです。
 ターミナルから `curl` でアクセスして確認することも可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
 
 ```text
@@ -148,7 +148,7 @@ Jinja2 の機能の一つで [`filter`](https://docs.ansible.com/projects/ansibl
 
 変数に値が入っていない場合に、初期値を設定してくれるフィルターです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.debug -a 'msg={{ hoge | default("abc") }}'`
 
 ```text
@@ -161,7 +161,7 @@ node1 | SUCCESS => {
 
 文字列を大文字・小文字に変換するフィルターです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -e 'str=abc' -m ansible.builtin.debug -a 'msg="{{ str | upper }}"'`
 
 ```text
@@ -174,7 +174,7 @@ node1 | SUCCESS => {
 
 リストから最小・最大値を取り出すフィルターです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.debug -a 'msg="{{ [5, 1, 10] | min }}"'`
 
 ```text
@@ -183,7 +183,7 @@ node1 | SUCCESS => {
 }
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.debug -a 'msg="{{ [5, 1, 10] | max }}"'`
 
 ```text
@@ -196,5 +196,5 @@ node1 | SUCCESS => {
 
 ## 演習の解答
 
-- [template\_html\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/template_playbook.yml)
-- [files/index.html.j2](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/templates/index.html.j2)
+- [template\_html\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/template_playbook.yml)
+- [files/index.html.j2](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/templates/index.html.j2)

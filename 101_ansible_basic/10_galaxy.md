@@ -33,7 +33,7 @@ Galaxy には既に膨大な数のロールが登録されており、大抵の�
 
 `~/working/roles/requirements.yml` を以下のように編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/requirements.yml`
 ```yaml
 ---
@@ -45,7 +45,7 @@ Galaxy には既に膨大な数のロールが登録されており、大抵の�
 
 次にこのロールを利用する `~/working/galaxy_playbook.yml` を作成します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/galaxy_playbook.yml`
 ```yaml
 ---
@@ -65,10 +65,10 @@ Galaxy には既に膨大な数のロールが登録されており、大抵の�
 
 Galaxy からロールを習得します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy role install -r roles/requirements.yml`
 
 ```text
@@ -89,7 +89,7 @@ Starting galaxy role install process
 
 ダウンロードされたロールを確認するは以下のコマンドを実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy role list`
 
 ```text
@@ -100,7 +100,7 @@ Starting galaxy role install process
 
 実際に playbook を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook galaxy_playbook.yml`
 
 ```text
@@ -128,7 +128,7 @@ Role に含まれるカスタムモジュールやカスタムフィルターは
 
 このカスタムモジュールは以下のように使用できます。 `~/working/galaxy_playbook.yml` を編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/galaxy_playbook.yml`
 ```yaml
 ---
@@ -150,7 +150,7 @@ Role に含まれるカスタムモジュールやカスタムフィルターは
 
 実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook galaxy_playbook.yml`
 
 ```text
@@ -185,5 +185,5 @@ Galaxy を利用して再配布可能なロールを作成するためにはリ�
 
 ## 演習の解答
 
-- [galaxy\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/galaxy_playbook.yml)
-- [requirements.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/roles/requirements.yml)
+- [galaxy\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/galaxy_playbook.yml)
+- [requirements.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/roles/requirements.yml)

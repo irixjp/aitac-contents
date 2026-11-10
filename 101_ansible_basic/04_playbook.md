@@ -65,7 +65,7 @@ Ansible でインフラを自動化するには、まず最初に Playbook を�
 
 この Playbook は Excel に変換すると以下のようなイメージになります。
 
-![yaml_to_excel.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/yaml_to_excel.png)
+![yaml_to_excel.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/yaml_to_excel.png)
 
 YAMLはデータ構造を表現するためのフォーマットであるため、このような変換が可能となります。
 
@@ -85,7 +85,7 @@ YAMLはデータ構造を表現するためのフォーマットであるため�
 
 以下のようにファイルに追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/first_playbook.yml`
 ```yaml
 ---
@@ -105,7 +105,7 @@ YAMLはデータ構造を表現するためのフォーマットであるため�
 
 次に以下の状態となるように先のファイルへ追記します。インデントの階層に注意してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/first_playbook.yml`
 ```yaml
 ---
@@ -140,10 +140,10 @@ YAMLはデータ構造を表現するためのフォーマットであるため�
 
 作成した playbook に構文エラーがないかを以下のコマンドで確認できます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook first_playbook.yml --syntax-check`
 
 ```text
@@ -169,7 +169,7 @@ Origin: /student/test1.yaml:9:7
 
 作成した playbook を実行します。playbook の実行には `ansible-playbook` コマンドを利用します。成功すれば httpd サーバーが起動して apache の初期画面が参照できるはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook first_playbook.yml`
 
 ```text
@@ -200,7 +200,7 @@ node3  : ok=3 changed=2 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 
 node1〜3 は演習環境の中だけにあるサーバーで、ブラウザからは直接アクセスできません。ターミナルから `curl` コマンドでアクセスします。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -s http://node1/ | grep '<title>'`
 
 ```text
@@ -218,7 +218,7 @@ node2、node3 も同じように確認してください。apache の初期画�
 
 ファイルを以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/files/index.html`
 ```html
 <body>
@@ -228,7 +228,7 @@ node2、node3 も同じように確認してください。apache の初期画�
 
 さらに `first_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/first_playbook.yml`
 ```yaml
 ---
@@ -255,10 +255,10 @@ node2、node3 も同じように確認してください。apache の初期画�
 
 編集が完了したら、構文チェックを実施した後に playbook を実行してみましょう。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook first_playbook.yml --syntax-check`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook first_playbook.yml`
 
 ```text
@@ -292,7 +292,7 @@ node3  : ok=4 changed=1 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 
 正常終了したら再び `curl` で3台のノードへアクセスしてください。正しく playbook が記述され、動作したのならば先程作成した `index.html` の内容が表示されるはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
 
 ```text
@@ -317,7 +317,7 @@ Ansible のモジュールを利用するメリットして、記述量を大幅
 
 ここで再度この playbook を実行してみましょう。3つのタスクの状態がどのようになるか考えてから実行してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook first_playbook.yml`
 
 ```text
@@ -392,5 +392,5 @@ Ansible の各モジュールはこの冪等性を考慮するように作られ
 
 ## 演習の解答
 
-- [first\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/first_playbook.yml)
-- [files/index.html](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/files/index.html)
+- [first\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/first_playbook.yml)
+- [files/index.html](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/files/index.html)

@@ -4,7 +4,7 @@
 ## 演習環境について
 本演習環境は以下のように構成されています。
 
-![environment.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/environment.png)
+![environment.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/environment.png)
 
 
 ## 演習環境への利用方法
@@ -12,27 +12,27 @@
 ### 🔸演習環境へのアクセス
 講師の案内に従い演習環境へアクセスしてください。アクセスにはパスワードの入力が必要となります。
 
-![vscode_pass.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/vscode_pass.png)
+![vscode_pass.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/vscode_pass.png)
 
 アクセスすると以下のような画面が表示されます。
 
-![vscode_start_page](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/vscode_start_page.png)
+![vscode_start_page](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/vscode_start_page.png)
 
 ### 🔸ファイルエクスプローラーの設定
 
-画面左上の ![file_exp_icon.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/file_exp_icon.png) をクリックします。
+画面左上の ![file_exp_icon.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/file_exp_icon.png) をクリックします。
 
 左ウインドにファイルエクスプローラーが起動しますので、`Open Folder` を選択する。
 
-![file_exp_open_folder.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/file_exp_open_folder.png)
+![file_exp_open_folder.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/file_exp_open_folder.png)
 
 `/student/` (デフォルトのまま) を入力してOKを選択すると、ファイルエクスプローラーに `/student` が表示されます。演習中のファイル作成や編集をここから行います。
 
-![select_dir.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/select_dir.png)
+![select_dir.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/select_dir.png)
 
 このときに、いくつかの警告が表示される場合がありますが `Yes` を選択してください。
 
-![notification.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/notification.png)
+![notification.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/notification.png)
 
 > Note: この後も警告が表示される場合はありますが、全て `Yes` や `Accept` を選択してください。
 
@@ -40,17 +40,17 @@
 
 画面左上側の「≡」(横三本線)アイコンをクリックして、`Terminal` -> `New Terminal` を選択するとターミナルを起動できます。
 
-![open_terminal.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/open_terminal.png)
+![open_terminal.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/open_terminal.png)
 
 起動すると以下のような画面になります。
 
-![terminal.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/terminal.png)
+![terminal.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/terminal.png)
 
 ターミナルを起動したら動作確認を行います。以下のコマンドをターミナルから実行してください。
 
-> Note: 本演習では ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png) とついている部分が演習で実行するコマンドになります。
+> Note: 本演習では ![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png) とついている部分が演習で実行するコマンドになります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible --version`
 
 ```text
@@ -65,7 +65,7 @@ ansible [core 2.21.5]
   pyyaml version = 6.0.3 (with libyaml v0.2.5)
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ping -o`
 
 ```text

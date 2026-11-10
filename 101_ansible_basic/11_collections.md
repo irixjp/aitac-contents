@@ -19,7 +19,7 @@ Collection を利用するには先ずインストールを行う必要があり
 
 その前に、現在インストールされているコレクションを確認してみましょう。以下を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection list`
 
 ```text
@@ -49,14 +49,14 @@ ansible.windows                          3.2.0
 
 この状態で利用可能なモジュールの数を確認しておきます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-doc -l | wc -l`
 
 このコマンドで数字が表示されるので、その値をメモしていてください（警告が表示される場合もありますが無視してください）
 
 ここに新たなコレクション [`oracle.oci`](https://galaxy.ansible.com/ui/repo/published/oracle/oci/) をインストールしてみます。これは Oracle 社のクラウドを操作するモジュール群を含んだコレクションです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection install oracle.oci`
 
 ```text
@@ -72,7 +72,7 @@ oracle.oci:5.5.0 was installed successfully
 
 インストールされたコレクションを確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection list | grep oracle`
 
 ```text
@@ -83,12 +83,12 @@ oracle.oci                               5.5.0
 
 利用可能なモジュールが増えているはずです。確認しておきましょう。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-doc -l | wc -l`
 
 ダウンロードされたコレクションはデフォルトで `~/.ansible/collections/ansible_collections/` へと保存されます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ls -alF ~/.ansible/collections/ansible_collections/`
 
 ```text
@@ -102,17 +102,17 @@ drwxr-xr-x. 2 student student 24 Dec  7 06:14 oracle.oci-5.5.0.info/
 
 アンインストールするコマンドはありませんので、コレクションを削除したい場合にはコレクションのディレクトリを削除します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `rm -rf ~/.ansible/collections/ansible_collections/oracle*`
 
 削除されたか確認しておきます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection list | grep oracle`
 
 利用可能なモジュール数も減っているはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-doc -l | wc -l`
 
 > Note: コレクションのインストールにはコレクションのバージョンを指定することも可能です。インストール時に `<namespace>.<collection_name>:<version>` と指定します(バージョンを指定しなかった場合は最新版がインストールされます)
@@ -133,7 +133,7 @@ drwxr-xr-x. 2 student student 24 Dec  7 06:14 oracle.oci-5.5.0.info/
 
 `~/working/collections/requirements.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/collections/requirements.yml`
 ```yaml
 ---
@@ -144,15 +144,15 @@ collections:
 
 コレクションを取得するには以下を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection install -r collections/requirements.yml`
 
 このコマンドで警告（`requires_ansible metadata`）が表示される場合もありますが無視してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-galaxy collection list | grep sample_collection`
 
 ```text
@@ -170,7 +170,7 @@ irixjp.sample_collection_hello 1.0.0
 
 `~/working/collection_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/collection_playbook.yml`
 ```yaml
 ---
@@ -192,7 +192,7 @@ irixjp.sample_collection_hello 1.0.0
 
 実行結果を確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook collection_playbook.yml`
 
 ```text
@@ -236,5 +236,5 @@ ok: [node1] => {
 
 ## 演習の解答
 ---
-- [collection\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/collection_playbook.yml)
-- [collections/requirements.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/collections/requirements.yml)
+- [collection\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/collection_playbook.yml)
+- [collections/requirements.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/collections/requirements.yml)

@@ -22,7 +22,7 @@ Ansible における変数は以下の特徴を持っています。
 
 `~/working/vars_debug_playbook.yml` を以下のように編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/vars_debug_playbook.yml`
 ```yaml
 ---
@@ -47,10 +47,10 @@ Ansible における変数は以下の特徴を持っています。
 
 `vars_debug_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_debug_playbook.yml`
 
 ```text
@@ -81,7 +81,7 @@ ok: [node1] => {
 
 `~/working/vars_play_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/vars_play_playbook.yml`
 ```yaml
 ---
@@ -117,10 +117,10 @@ ok: [node1] => {
 
 `vars_play_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_play_playbook.yml`
 
 ```text
@@ -162,7 +162,7 @@ ok: [node1] => {
 
 `~/working/vars_task_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/vars_task_playbook.yml`
 ```yaml
 ---
@@ -188,7 +188,7 @@ ok: [node1] => {
 
 `vars_task_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_task_playbook.yml`
 
 ```text
@@ -215,7 +215,7 @@ ok: [node1] => {
 
 `extra_vars` を与えるには `ansible-playbook` コマンドに `-e` オプションをつけて実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_task_playbook.yml -e 'task_vars=50'`
 
 ```text
@@ -262,7 +262,7 @@ ok: [node1] => {
 
 グループ変数を定義します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/group_vars/all.yml`
 ```yaml
 ---
@@ -273,7 +273,7 @@ vars_by_group_vars: 1000
 
 node1用のホスト変数を定義します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/host_vars/node1.yml`
 ```yaml
 ---
@@ -284,7 +284,7 @@ vars_by_host_vars: 111
 
 node2用のホスト変数を定義します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/host_vars/node2.yml`
 ```yaml
 ---
@@ -295,7 +295,7 @@ vars_by_host_vars: 222
 
 node3用のホスト変数を定義します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/host_vars/node3.yml`
 ```yaml
 ---
@@ -306,7 +306,7 @@ vars_by_host_vars: 333
 
 ここまでに作成したファイルを確認しておきます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `tree group_vars host_vars`
 
 ```text
@@ -323,7 +323,7 @@ host_vars
 
 これらの変数を利用する playbook を作成します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/vars_host_group_playbook.yml`
 ```yaml
 ---
@@ -349,7 +349,7 @@ host_vars
 
 ここまで準備が整ったら `vars_host_group_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_host_group_playbook.yml`
 
 ```text
@@ -403,7 +403,7 @@ Ansible のモジュールは実行されると様々な戻り値を返します
 
 `~/working/vars_register_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/vars_register_playbook.yml`
 ```yaml
 ---
@@ -433,7 +433,7 @@ Ansible のモジュールは実行されると様々な戻り値を返します
 
 `vars_register_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook vars_register_playbook.yml`
 
 ```text
@@ -489,12 +489,12 @@ ok: [node1] => {
 
 ## 演習の解答
 
-- [vars\_debug\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/vars_debug_playbook.yml)
-- [vars\_play\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/vars_play_playbook.yml)
-- [vars\_task\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/vars_task_playbook.yml)
-- [vars\_host\_group\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/vars_host_group_playbook.yml)
-  - [host\_vars/node1.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/host_vars/node1.yml)
-  - [host\_vars/node2.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/host_vars/node2.yml)
-  - [host\_vars/node3.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/host_vars/node3.yml)
-  - [group\_vars/all.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/group_vars/all.yml)
-- [vars\_register\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/vars_register_playbook.yml)
+- [vars\_debug\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/vars_debug_playbook.yml)
+- [vars\_play\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/vars_play_playbook.yml)
+- [vars\_task\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/vars_task_playbook.yml)
+- [vars\_host\_group\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/vars_host_group_playbook.yml)
+  - [host\_vars/node1.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/host_vars/node1.yml)
+  - [host\_vars/node2.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/host_vars/node2.yml)
+  - [host\_vars/node3.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/host_vars/node3.yml)
+  - [group\_vars/all.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/group_vars/all.yml)
+- [vars\_register\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/vars_register_playbook.yml)

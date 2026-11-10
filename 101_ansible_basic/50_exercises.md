@@ -71,6 +71,6 @@ for i in `seq 1 10`; do curl node6; done
 
 ## 解答例
 
-- [httpd_myip](https://github.com/irixjp/aitac-automation/tree/main/101_ansible_basic/solutions/roles/httpd_myip)
-- [nginx_lb](https://github.com/irixjp/aitac-automation/tree/main/101_ansible_basic/solutions/roles/nginx_lb)
-- [lb_web.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/lb_web.yml)
+- [httpd_myip](https://github.com/irixjp/aitac-contents/tree/main/101_ansible_basic/solutions/roles/httpd_myip)
+- [nginx_lb](https://github.com/irixjp/aitac-contents/tree/main/101_ansible_basic/solutions/roles/nginx_lb)
+- [lb_web.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/lb_web.yml)

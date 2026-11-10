@@ -13,7 +13,7 @@ ansible-rulebook では、ルールに `throttle` を指定して、同じイベ
 
 `~/eda/working/throttle_rulebook.yml` をエディタで開き、以下のように追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/throttle_rulebook.yml`
 ```yaml
 ---
@@ -55,17 +55,17 @@ ansible-rulebook では、ルールに `throttle` を指定して、同じイベ
 
 左側のターミナルで rulebook を起動してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-rulebook -i ~/inventory -r throttle_rulebook.yml -v`
 
 右側のターミナル（`~/eda/working` にいること）から、node1 のアラートを 1 秒おきに 3 回送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `for i in 1 2 3; do curl -H 'Content-Type: application/json' -d @events/service_down_node1.json http://localhost:5000/endpoint; echo; sleep 1; done`
 
 続けて、node2 のアラートを 1 回送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/service_down_node2.json http://localhost:5000/endpoint`
 
 左側のターミナルを確認してください。node1 のイベントを 3 回送りましたが、`ops_service.yml` は node1 に対して 1 回、node2 に対して 1 回だけ実行されています。
@@ -110,7 +110,7 @@ node2                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 最初に node1 のイベントを送ってから 1 分以上たってから、もう一度 node1 のイベントを送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/service_down_node1.json http://localhost:5000/endpoint`
 
 1 分の期間が終わっているため、node1 に対して再び `ops_service.yml` が実行されます。
@@ -127,7 +127,7 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 `throttle` には、`once_within` のほかに `once_after` があります。`throttle_rulebook.yml` の `once_within: 1 minute` を、以下のように変更してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/throttle_rulebook.yml`（変更する部分のみ）
 ```yaml
     throttle:
@@ -138,7 +138,7 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 rulebook を起動し直し、node1 のアラートを 1 秒おきに 3 回送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `for i in 1 2 3; do curl -H 'Content-Type: application/json' -d @events/service_down_node1.json http://localhost:5000/endpoint; echo; sleep 1; done`
 
 イベントを送った直後には、何も実行されません。最初のイベントから 30 秒たつと、node1 に対して `ops_service.yml` が 1 回だけ実行されます。
@@ -164,6 +164,6 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 ## 演習の解答
 
-- [throttle\_rulebook.yml](https://github.com/irixjp/aitac-automation/blob/main/201_event-driven-ansible/solutions/throttle_rulebook.yml)
+- [throttle\_rulebook.yml](https://github.com/irixjp/aitac-contents/blob/main/201_event-driven-ansible/solutions/throttle_rulebook.yml)
 
 > Note: 解答は、ステップ1 の `once_within` の状態です。

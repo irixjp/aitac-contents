@@ -81,10 +81,10 @@ Ansible でのテストでよく使われる記述パターンは、`ansible.bui
 
 実際にテストを作成してみます。ここで想定するテスト対象は単純な例として httpd サーバーをインストールして起動したサーバーとします。具体的には以下を実行したサーバーに対してテストを行います。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.dnf -a 'name=httpd state=present'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.systemd -a 'name=httpd state=started enabled=yes'`
 
 上記をテストするために以下の確認を行うこととします。
@@ -95,7 +95,7 @@ Ansible でのテストでよく使われる記述パターンは、`ansible.bui
 
 ファイル `~/working/testing_assert_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/testing_assert_playbook.yml`
 ```yaml
 ---
@@ -132,20 +132,20 @@ Ansible でのテストでよく使われる記述パターンは、`ansible.bui
 
 Playbookを実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook testing_assert_playbook.yml`
 
 このPlaybookは正常終了したはずです。
 
 次にテストでエラーを発生させます。あえて httpd を停止してからテストを実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.systemd -a 'name=httpd state=stopped enabled=yes'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook testing_assert_playbook.yml`
 
 今回のテストは失敗したはずです。httpd が起動していないため、 `assert` でのチェックに失敗しています。
@@ -157,7 +157,7 @@ Playbookを実行します。
 
 先程のファイル `~/working/testing_assert_playbook.yml` を以下のように編集します。`always` 以下が追加された部分になります。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/testing_assert_playbook.yml`
 ```yaml
 ---
@@ -216,20 +216,20 @@ Playbookを実行します。
 
 テストが成功するパターンで実行してみます。そのために httpd を再起動しておきます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m systemd -a 'name=httpd state=started enabled=yes'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook testing_assert_playbook.yml`
 
 このテストは成功するはずです。 `~/working/result_report_node1.md` というレポートファイルが作成されているはずなので中身を確認してください。
 
 次にテストを失敗させてレポートを確認します。 httpd プロセスを停止してからテストを実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m systemd -a 'name=httpd state=stopped enabled=yes'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook testing_assert_playbook.yml`
 
 テストのレポートがどのように変化したか確認してください。
@@ -240,7 +240,7 @@ Playbookを実行します。
 
 ファイル `~/working/reporting_playbook.yml` を以下のように作成します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/reporting_playbook.yml`
 ```yaml
 ---
@@ -278,10 +278,10 @@ Playbookを実行します。
 - `ansible.builtin..assemble` モジュール: ファイルを結合するモジュールです。
 - `run_once: true` このオプションが指定されると複数ホストが存在しても1台だけで実行されます。これは結合処理は1回だけ実行できれば良いからです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook reporting_playbook.yml`
 
 実行すると `setting_report.md` というファイルが working ディレクトリに作成されるので内容を確認します(Markdownのプレビューモードで確認してください)
@@ -292,5 +292,5 @@ Playbookを実行します。
 
 ## 演習の解答
 
-- [testing\_assert\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/testing_assert_playbook.yml)
-- [reporting\_playbook](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/reporting_playbook.yml)
+- [testing\_assert\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/testing_assert_playbook.yml)
+- [reporting\_playbook](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/reporting_playbook.yml)

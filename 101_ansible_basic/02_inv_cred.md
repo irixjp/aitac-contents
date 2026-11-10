@@ -2,16 +2,16 @@
 
 Ansible の基本となるインベントリー(inventory)と認証情報(credential)について学習します。これは Ansible を動かす上で最低限準備する3つの情報のうちの2つに該当します。
 
-![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/ansible_structure.png)
+![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/ansible_structure.png)
 
 ## 演習環境での Ansible の実行
 
 まず以下のコマンドを実行してください。これは Ansible を使って演習ノードのディスク使用量を確認しています。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m shell -a 'df -h'`
 
 ```text
@@ -51,7 +51,7 @@ tmpfs           1.8G   16M  1.8G   1% /var/log/journal
 
 まず以下のコマンドを実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible --version`
 
 ```text
@@ -80,7 +80,7 @@ ansible コマンドに `--version` オプションをつけると、実行環�
 
 この中身を確認してみましょう。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cat ~/.ansible.cfg`
 
 ```ini
@@ -108,7 +108,7 @@ ssh_args = -o ControlMaster=auto -o ControlPersist=60s -o StrictHostKeyChecking=
 
 インベントリーは Ansible が自動化の実行対象を決定するための機能です。ファイルの中身を確認してみましょう。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cat ~/inventory`
 
 ```text
@@ -146,7 +146,7 @@ ansible_ssh_private_key_file=/student/id_rsa_podman
 
 実際にこのインベントリーを利用して定義されたノードへ対して Ansible を実行してみます。以下のコマンドを実行してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible web -i ~/inventory -m ping -o`
 
 ```text
@@ -164,7 +164,7 @@ node3 | SUCCESS => {"changed": false,"ping": "pong"}
 
 今回の環境では、 `ansible.cfg` ファイルによって、デフォルトのインベントリーが指定されているため、以下のように `-i ~/inventory` を省略することが可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible web -m ping -o`
 
 ```text
@@ -177,7 +177,7 @@ node3 | SUCCESS => {"changed": false,"ping": "pong"}
 
 グループ名の代わりにノード名を指定することも可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ping -o`
 
 ```text
@@ -186,7 +186,7 @@ node1 | SUCCESS => {"changed": false,"ping": "pong"}
 
 複数のノードを指定することも可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1,node3 -m ping -o`
 
 ```text
@@ -196,7 +196,7 @@ node3 | SUCCESS => {"changed": false,"ping": "pong"}
 
 別のグループを指定することも可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible app -m ping -o`
 
 ```text
@@ -206,7 +206,7 @@ node5 | SUCCESS => {"changed": false,"ping": "pong"}
 
 特別なグループである `all` を指定してみます。`all` はインベントリーに含まれる全てのノードを対象とします。今回のインベントリーは `all` と `web` のグループが同じものを指しているため、結果も同じになります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ping -o`
 
 ```text
@@ -222,7 +222,7 @@ node6 | SUCCESS => {"changed": false,"ping": "pong"}
 
 ここまでの例では指定したグループに対して Ansible が何らかの処理(この場合は ping)を実行していますが、処理を行わずに対象のノードのみを確認するこも可能です。その場合は `--list-hosts` オプションを使います。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible web --list-hosts`
 
 ```text
@@ -232,7 +232,7 @@ node6 | SUCCESS => {"changed": false,"ping": "pong"}
     node3
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible app --list-hosts`
 
 ```text
@@ -267,7 +267,7 @@ ansible_ssh_private_key_file=/student/id_rsa_podman
 
 この他にも認証情報を与える方法がいくつか提供されいます。代表的なものとしてコマンドラインのオプションとして与える方法があります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -u student --private-key ~/id_rsa_podman -m ping`
 
 - `-u student`: ログインに使用するユーザー名を指定できます。

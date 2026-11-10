@@ -8,7 +8,7 @@ playbook で一連のタスクをグループ化し、まとめて `when` や `i
 
 `~/working/block_playbook.yml` を編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/block_playbook.yml`
 ```yaml
 ---
@@ -41,12 +41,12 @@ playbook で一連のタスクをグループ化し、まとめて `when` や `i
 
 `block_playbook.yml` を `-e 'exec_block=no'` と `yes` の場合で実行結果にどのような違いがあるか見てみましょう。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
 まず、条件が成立しないケースです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook block_playbook.yml -e 'exec_block=no'`
 
 ```text
@@ -62,7 +62,7 @@ skipping: [node1]
 
 3つのタスクがまとめてスキップされていることがわかります。次に条件が成立するケースです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook block_playbook.yml -e 'exec_block=yes'`
 
 ```text
@@ -89,7 +89,7 @@ ok: [node1]
 
 `~/working/rescue_playbook.yml` を以下のように作成してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/rescue_playbook.yml`
 ```yaml
 ---
@@ -132,7 +132,7 @@ ok: [node1]
 
 実際に実行して結果を確認します。まず `error_flag=no` として、正常終了させます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook rescue_playbook.yml -e 'error_flag=no'`
 
 ```text
@@ -157,7 +157,7 @@ ok: [node1] => {
 
 次に、エラーが発生する場合のケースを確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook rescue_playbook.yml -e 'error_flag=yes'`
 
 ```text
@@ -216,5 +216,5 @@ ok: [node-1] => {
 
 ## 演習の解答
 
-- [block\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/block_playbook.yml)
-- [rescue\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/rescue_playbook.yml)
+- [block\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/block_playbook.yml)
+- [rescue\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/rescue_playbook.yml)

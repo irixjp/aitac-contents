@@ -2,7 +2,7 @@
 
 これまでは playbook に直接モジュールを列挙してきました。この方法でも Ansible の自動化は可能ですが、実際に Ansible を使っていくと、以前の処理を再利用したくなるケースに多々遭遇します。その際に以前のコードをコピー＆ペーストするのは効率が悪いですし、かといって別の playbook 全体を呼び出そうすると `hosts:` に書かれたグループ名とインベントリーの整合性が取れずうまく動作しないことがほとんどです。そこで登場するのが以下の図の `Role` という考え方です。
 
-![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/ansible_structure.png)
+![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/ansible_structure.png)
 
 様々な作業単位で自動化をパーツ化して再利用可能な部品とすることができます。[Role](https://docs.ansible.com/projects/ansible/latest/playbook_guide/playbooks_reuse_roles.html) は完全にインベントリーと切り離されており、様々な playbook から呼び出して利用することが可能です。
 
@@ -88,7 +88,7 @@ roles
 
 `~/working/roles/web_setup/tasks/main.yml` を編集
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/web_setup/tasks/main.yml`
 ```yaml
 ---
@@ -124,7 +124,7 @@ roles
 
 `~/working/roles/web_setup/handlers/main.yml` を編集。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/web_setup/handlers/main.yml`
 ```yaml
 ---
@@ -140,7 +140,7 @@ roles
 
 `~/working/roles/web_setup/defaults/main.yml` の編集
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/web_setup/defaults/main.yml`
 ```yaml
 ---
@@ -155,7 +155,7 @@ LANG: JP
 
 `~/working/roles/web_setup/templates/index.html.j2` の編集
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/web_setup/templates/index.html.j2`
 ```jinja2
 <html><body>
@@ -179,23 +179,23 @@ LANG: JP
 
 このファイルはサーバー側から取得します。以下のようにコマンドを実行してファイルを取得した後にファイルを編集してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working/roles/web_setup`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.dnf -a 'name=httpd state=latest'`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.fetch -a 'src=/etc/httpd/conf/httpd.conf dest=files/httpd.conf flat=yes'`
 
 ファイルが取得できていることを確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ls -l files/`
 
 ファイルの中身を編集します。演習の進み方によっては既に編集済みの場合もありますのでその場合はそのままにしてください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/roles/web_setup/files/httpd.conf`
 ```
 ServerAdmin root@localhost
@@ -212,7 +212,7 @@ ServerAdmin centos_role@localhost
 
 実際にロールを呼び出す playbook を作成します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/role_playbook.yml`
 ```yaml
 ---
@@ -228,10 +228,10 @@ ServerAdmin centos_role@localhost
 
 作成したロールを確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `tree roles`
 
 以下のような構造になっていれば必要なファイルの準備が整っています。
@@ -255,7 +255,7 @@ roles
 
 作成した playbook を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook role_playbook.yml`
 
 ```text
@@ -289,7 +289,7 @@ changed: [node1]
 
 上記のような出力となれば成功です。node1,2,3 に対してターミナルから `curl` でアクセスしてサイトの動作を確認してください。テンプレートから作られた `index.html` の内容が表示されるはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl http://node1/`
 
 ```text
@@ -308,5 +308,5 @@ node2、node3 も同じように確認してください。
 
 ## 演習の解答
 ---
-- [role\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/role_playbook.yml)
-- [web\_setup](https://github.com/irixjp/aitac-automation/tree/main/101_ansible_basic/solutions/roles/web_setup)
+- [role\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/role_playbook.yml)
+- [web\_setup](https://github.com/irixjp/aitac-contents/tree/main/101_ansible_basic/solutions/roles/web_setup)

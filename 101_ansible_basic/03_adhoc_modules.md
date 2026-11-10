@@ -2,7 +2,7 @@
 
 ここでは Ansible における重要な要素である `Module` (モジュール) と、モジュールを実行するための `Ad-hoc コマンド` について学習します。
 
-![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/ansible_structure.png)
+![ansible_structure.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/ansible_structure.png)
 
 ## モジュールとは
 
@@ -70,7 +70,7 @@ function dnf_install () {
 現在の環境でどのようなモジュールが利用可能になっているかは `ansible-doc` コマンドで参照することができます。
 このコマンドはインストール済みのモジュールの一覧を表示します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-doc -l`
 
 ```text
@@ -85,7 +85,7 @@ amazon.aws.autoscaling_instance_refresh        Start or cancel an EC2 Auto Scali
 
 特定のモジュールのドキュメントを参照するには以下のように実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-doc ansible.builtin.dnf`
 
 ```text
@@ -123,7 +123,7 @@ Ad-hoc コマンドを利用して、いくつかのモジュールを実際に�
 
 [`ansible.builtin.ping`](https://docs.ansible.com/projects/ansible/latest/collections/ansible/builtin/ping_module.html) モジュールを実行してみましょう。これは Ansible が操作対象のノードに対して「Ansible としての疎通」が可能かどうかを判定するモジュールです(ネットワークで利用するICMPとは意味合いが異なります)。pingモジュールのパラメーターは省略可能です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.ping`
 
 ```text
@@ -143,7 +143,7 @@ node1 | SUCCESS => {
 
 次に、[`shell`](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html) モジュールを呼び出してみましょう。これは対象のノード上で任意のコマンドを実行し、その結果を回収するコマンドです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.shell -a 'hostname'`
 
 ```text
@@ -161,25 +161,25 @@ node4 | CHANGED | rc=0 >>
 
 カーネル情報を取得する
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.shell -a 'uname -a'`
 
 
 日付を取得する
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.shell -a 'date'`
 
 > Note: UTCで表示されるため、+9時間すると日本の時間になります。
 
 ディスクの使用状況を取得する
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.shell -a 'df -h'`
 
 インストールされたパッケージの情報から特定の情報を抽出する
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible all -m ansible.builtin.shell -a 'rpm -qa |grep bash'`
 
 
@@ -189,7 +189,7 @@ node4 | CHANGED | rc=0 >>
 
 今回は tmux パッケージをインストールします。まず現在の環境に tmux がインストールされていないことを確認します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.shell -a 'which tmux'`
 
 ```text
@@ -206,7 +206,7 @@ which: no tmux in (/home/student/.local/bin:/home/student/bin:/usr/local/bin:/us
 
 では、 ansible.builtin.dnf モジュールで tmux のインストールを行います。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.dnf -a 'name=tmux state=latest'`
 
 ```text
@@ -227,7 +227,7 @@ node1 | CHANGED => {
 
 再度、tmux コマンドの確認を行うと、今度はパッケージがインストールされたため成功するはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.shell -a 'which tmux'`
 
 ```text
@@ -241,7 +241,7 @@ node1 | CHANGED | rc=0 >>
 
 出力される情報量が多いため、1台のノードのみに実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.setup`
 
 このように Ansible は様々なモジュールを持ち、これらを使ってノードに対して操作を行ったり、情報収集を行うことが可能です。

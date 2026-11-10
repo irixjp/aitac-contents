@@ -47,12 +47,12 @@
 
 まず、これらの playbook を `ansible-playbook` コマンドで実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/eda/working`
 
 node2 の sshd のログを取得します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook ops_logs.yml -l node2`
 
 ```text
@@ -78,7 +78,7 @@ node2                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 node3 の sshd の状態を取得します。`-e` で変数 `service_name` を指定しています。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook ops_service.yml -l node3 -e service_name=sshd`
 
 ```text
@@ -103,7 +103,7 @@ node3                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 node4 のプロセスとリソースの状況を取得します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook ops_process.yml -l node4`
 
 ```text
@@ -163,7 +163,7 @@ node4                      : ok=4    changed=0    unreachable=0    failed=0    s
 
 `~/eda/working/ops_rulebook.yml` をエディタで開いてください。このファイルには先頭に `---` のみが記載されています。以下のように追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/ops_rulebook.yml`
 ```yaml
 ---
@@ -186,12 +186,12 @@ node4                      : ok=4    changed=0    unreachable=0    failed=0    s
 
 左側のターミナルで rulebook を起動してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-rulebook -i ~/inventory -r ops_rulebook.yml -v`
 
 `Waiting for events` と表示されたら、右側のターミナルから node2 のログ取得のイベントを送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "logs", "host": "node2"}' http://localhost:5000/endpoint`
 
 左側のターミナルで `ops_logs.yml` が実行されます。ただし、PLAY RECAP を確認すると、node2 だけでなく node1〜6 のすべてで実行されています。
@@ -212,7 +212,7 @@ rulebook の `hosts: all` に対して playbook が実行されたためです�
 
 イベントの `host` の値を、playbook の実行対象にします。以下のように `filters` を追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/ops_rulebook.yml`
 ```yaml
 ---
@@ -238,12 +238,12 @@ rulebook の `hosts: all` に対して playbook が実行されたためです�
 
 左側のターミナルで `Ctrl+C` を押して rulebook を停止し、起動し直してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-rulebook -i ~/inventory -r ops_rulebook.yml -v`
 
 右側のターミナルから、先ほどと同じイベントを送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "logs", "host": "node2"}' http://localhost:5000/endpoint`
 
 今度は node2 だけで実行されます。
@@ -267,7 +267,7 @@ node2                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 `host` にはリストも指定できます。以下のイベントを送ると、node5 と node6 で実行されます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "logs", "host": ["node5", "node6"]}' http://localhost:5000/endpoint`
 
 ```text
@@ -280,7 +280,7 @@ node6                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 残りの 2 つの playbook のルールを追加します。`rules` に以下の 2 つのルールを追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/ops_rulebook.yml`
 ```yaml
 ---
@@ -320,7 +320,7 @@ node6                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 rulebook を起動し直してから、右側のターミナルで以下のイベントを順に送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "service", "host": "node3", "service": "sshd"}' http://localhost:5000/endpoint`
 
 ```text
@@ -343,7 +343,7 @@ PLAY RECAP *********************************************************************
 node3                      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "process", "host": "node4"}' http://localhost:5000/endpoint`
 
 ```text
@@ -355,7 +355,7 @@ node4                      : ok=4    changed=0    unreachable=0    failed=0    s
 
 `service` を含まないイベントも送ってみます。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"action": "service", "host": "node1"}' http://localhost:5000/endpoint`
 
 ```text
@@ -387,4 +387,4 @@ ok: [node1] => {
 
 ## 演習の解答
 
-- [ops\_rulebook.yml](https://github.com/irixjp/aitac-automation/blob/main/201_event-driven-ansible/solutions/ops_rulebook.yml)
+- [ops\_rulebook.yml](https://github.com/irixjp/aitac-contents/blob/main/201_event-driven-ansible/solutions/ops_rulebook.yml)

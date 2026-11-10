@@ -30,7 +30,7 @@ ansible-rulebook -i ~/inventory -r conditions_rulebook.yml -v
 
 右側のターミナルでも、`~/eda/working` に移動しておいてください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/eda/working`
 
 
@@ -40,7 +40,7 @@ CPU 使用率のアラートを想定して、値が一定以上のときに動�
 
 `~/eda/working/conditions_rulebook.yml` をエディタで開き、以下のように追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/conditions_rulebook.yml`
 ```yaml
 ---
@@ -76,7 +76,7 @@ rulebook を起動し、右側のターミナルから以下の 3 つのイベ�
 | `events/cpu_50.json` | `{"host": "node1", "cpu": 50}` |
 | `events/cpu_95_str.json` | `{"host": "node1", "cpu": "95"}` |
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/cpu_95.json http://localhost:5000/endpoint`
 
 ```text
@@ -85,12 +85,12 @@ CPU 使用率が危険域です: node1 95%
 ********************************************************************************
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/cpu_50.json http://localhost:5000/endpoint`
 
 `cpu` が 50 のため、何も表示されません（受信のログだけが表示されます）。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/cpu_95_str.json http://localhost:5000/endpoint`
 
 ```text
@@ -103,7 +103,7 @@ CPU 使用率が危険域です: node1 95%
 
 次に、もう一段低いしきい値のルールを `cpu critical` の下に追加します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/conditions_rulebook.yml`
 ```yaml
 ---
@@ -130,7 +130,7 @@ CPU 使用率が危険域です: node1 95%
 
 rulebook を起動し直し、`events/cpu_85.json`（`{"host": "node1", "cpu": 85}`）と `events/cpu_95.json` を順に送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/cpu_85.json http://localhost:5000/endpoint`
 
 ```text
@@ -139,7 +139,7 @@ CPU 使用率が高くなっています: node1 85%
 ********************************************************************************
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/cpu_95.json http://localhost:5000/endpoint`
 
 ```text
@@ -157,7 +157,7 @@ CPU 使用率が危険域です: node1 95%
 
 複数の条件を組み合わせます。重要度（`severity`）が `critical` のアラートを、重要なホスト（node1、node2）とそれ以外とで分けて扱うルールを作成します。`rules` の末尾に以下の 2 つのルールを追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/conditions_rulebook.yml`（`rules` の末尾に追記）
 ```yaml
   - name: critical on important hosts
@@ -187,7 +187,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 | `events/critical_node3.json` | `{"host": "node3", "severity": "critical"}` |
 | `events/warning_node1.json` | `{"host": "node1", "severity": "warning"}` |
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/critical_node1.json http://localhost:5000/endpoint`
 
 ```text
@@ -196,7 +196,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 ********************************************************************************
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/critical_node3.json http://localhost:5000/endpoint`
 
 ```text
@@ -205,7 +205,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 ********************************************************************************
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/warning_node1.json http://localhost:5000/endpoint`
 
 `severity` が `warning` のため、どちらのルールも動きません。
@@ -215,7 +215,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 
 ログのメッセージのような文字列は、完全に一致するかどうかではなく、特定の語を含むかどうかで判定したい場合がほとんどです。このような場合は `is search` や `is match` を使います。`rules` の末尾に以下の 2 つのルールを追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/conditions_rulebook.yml`（`rules` の末尾に追記）
 ```yaml
   - name: timeout in log
@@ -247,7 +247,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 | `events/log_error.json` | `{"host": "node2", "log": "ERROR: failed to write /var/log/app.log"}` |
 | `events/log_no_error.json` | `{"host": "node2", "log": "INFO: no ERROR found in last check"}` |
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/log_timeout.json http://localhost:5000/endpoint`
 
 ```text
@@ -258,7 +258,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 
 `TIMEOUT` は大文字ですが、`ignorecase=true` を指定しているため当てはまります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/log_error.json http://localhost:5000/endpoint`
 
 ```text
@@ -267,7 +267,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 ********************************************************************************
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/log_no_error.json http://localhost:5000/endpoint`
 
 このログにも `ERROR` という語は含まれていますが、先頭ではないため `is match("ERROR")` には当てはまらず、何も表示されません。`is search` と `is match` の違いを確認してください。
@@ -277,7 +277,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 
 ここまでのルールは、イベントに `host` が含まれていることを前提にしています。`host` を含まないイベントが届いた場合にどうなるかを確認します。rulebook を起動したまま、`events/no_host.json`（`{"cpu": 95}`）を送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/no_host.json http://localhost:5000/endpoint`
 
 ```text
@@ -288,7 +288,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 
 このような想定外のイベントは、ほかのルールより先に見分けて扱います。`rules` の **先頭** に以下のルールを追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/conditions_rulebook.yml`（`rules` の先頭に追記）
 ```yaml
   rules:
@@ -309,7 +309,7 @@ rulebook を起動し直し、以下の 3 つのイベントを順に送って�
 
 rulebook を起動し直し、もう一度 `events/no_host.json` を送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/no_host.json http://localhost:5000/endpoint`
 
 ```text
@@ -336,4 +336,4 @@ host が含まれていないイベントです: {'cpu': 95}
 
 ## 演習の解答
 
-- [conditions\_rulebook.yml](https://github.com/irixjp/aitac-automation/blob/main/201_event-driven-ansible/solutions/conditions_rulebook.yml)
+- [conditions\_rulebook.yml](https://github.com/irixjp/aitac-contents/blob/main/201_event-driven-ansible/solutions/conditions_rulebook.yml)

@@ -11,7 +11,7 @@
 
 `~/eda/working/multiple_rulebook.yml` をエディタで開き、以下のように追記してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/multiple_rulebook.yml`
 ```yaml
 ---
@@ -54,12 +54,12 @@
 
 rulebook を起動し、右側のターミナル（`~/eda/working` にいること）から、以下の 2 つのイベントを続けて送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/disk_full_node1.json http://localhost:5000/endpoint`
 
 1 つ目のイベントでは、まだ何も表示されません。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/app_error_node1.json http://localhost:5000/endpoint`
 
 ```text
@@ -74,10 +74,10 @@ node1: 1 分以内に disk_full と app_error が発生しました
 
 rulebook を起動し直してから、以下の 2 つのイベントを続けて送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/disk_full_node1.json http://localhost:5000/endpoint`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/app_error_node2.json http://localhost:5000/endpoint`
 
 host が異なるため、何も表示されません。
@@ -86,10 +86,10 @@ host が異なるため、何も表示されません。
 
 rulebook を起動し直してから、確認1 と逆の順番で送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/app_error_node1.json http://localhost:5000/endpoint`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/disk_full_node1.json http://localhost:5000/endpoint`
 
 ```text
@@ -107,7 +107,7 @@ node1: 1 分以内に disk_full と app_error が発生しました
 
 ルールを以下のように変更してください。ルールの名前、2 つ目の条件、メッセージの 3 か所を変更しています。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/eda/working/multiple_rulebook.yml`
 ```yaml
 ---
@@ -138,10 +138,10 @@ node1: 1 分以内に disk_full と app_error が発生しました
 
 rulebook を起動し直してから、確認3 と同じ順番で送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/app_error_node1.json http://localhost:5000/endpoint`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/disk_full_node1.json http://localhost:5000/endpoint`
 
 今度は何も表示されません。
@@ -150,10 +150,10 @@ rulebook を起動し直してから、確認3 と同じ順番で送ってくだ
 
 rulebook を起動し直してから、確認1 と同じ順番で送ってください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/disk_full_node1.json http://localhost:5000/endpoint`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d @events/app_error_node1.json http://localhost:5000/endpoint`
 
 ```text
@@ -175,4 +175,4 @@ rulebook を起動し直し、`events/disk_full_node1.json` を送ってから *
 
 ## 演習の解答
 
-- [multiple\_rulebook.yml](https://github.com/irixjp/aitac-automation/blob/main/201_event-driven-ansible/solutions/multiple_rulebook.yml)
+- [multiple\_rulebook.yml](https://github.com/irixjp/aitac-contents/blob/main/201_event-driven-ansible/solutions/multiple_rulebook.yml)

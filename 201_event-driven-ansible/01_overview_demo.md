@@ -134,10 +134,10 @@ playbook とよく似た構造をしていることがわかると思います�
 
 左側のターミナルで以下のコマンドを実行してください。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/eda/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-rulebook -i ~/inventory -r demo_rulebook.yml -v`
 
 - `-i ~/inventory`: アクションで利用するインベントリーを指定します。「Ansible 基礎」と同じインベントリーです。
@@ -161,7 +161,7 @@ playbook とよく似た構造をしていることがわかると思います�
 
 右側のターミナルから、`curl` コマンドで webhook にイベントを送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"message": 1}' http://localhost:5000/endpoint`
 
 - `-H 'Content-Type: application/json'`: 送るデータが JSON であることを示します。
@@ -196,7 +196,7 @@ playbook とよく似た構造をしていることがわかると思います�
 
 右側のターミナルから、`message` を 2 にして送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"message": 2}' http://localhost:5000/endpoint`
 
 左側のターミナルに以下が表示されます。
@@ -220,7 +220,7 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0    s
 
 右側のターミナルから、`message` を 3 にして送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"message": 3}' http://localhost:5000/endpoint`
 
 左側のターミナルに以下が表示されます。
@@ -251,7 +251,7 @@ node1                      : ok=3    changed=0    unreachable=0    failed=0    s
 
 最後に、`message` を 4 にして送ります。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `curl -H 'Content-Type: application/json' -d '{"message": 4}' http://localhost:5000/endpoint`
 
 左側のターミナルには、以下のような受信のログが 1 行表示されるだけで、アクションは何も実行されません。

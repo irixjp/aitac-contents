@@ -34,7 +34,7 @@ playbook は YAML 形式で表記するため、基本的には作業やパラ�
 
 `~/working/loop_playbook.yml` を以下のように編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/loop_playbook.yml`
 ```yaml
 ---
@@ -60,10 +60,10 @@ playbook は YAML 形式で表記するため、基本的には作業やパラ�
 
 `loop_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `cd ~/working`
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook loop_playbook.yml`
 
 ```text
@@ -81,7 +81,7 @@ changed: [node1] => (item=pineapple)
 
 本当にユーザーが追加されたかを確認してみましょう。正しく playbook が記述されていれば、node-1 にユーザーが作成されているはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.shell -a 'cat /etc/passwd'`
 
 ```text
@@ -97,7 +97,7 @@ pineapple:x:1003:1003::/home/pineapple:/bin/bash
 
 自分で考えて実際に playbook を編集して実行してください。以下のような実行結果となれば正しく記述できています。冪等性が働いていることが確認できるはずです。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook loop_playbook.yml`
 
 ```text
@@ -128,7 +128,7 @@ Ansible の条件式は特定の条件下でタスクを実行「する・しな
 
 実際に以下の `~/working/when_playbook.yml` を書いてみましょう
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/when_playbook.yml`
 ```yaml
 ---
@@ -172,12 +172,12 @@ Ansible の条件式は特定の条件下でタスクを実行「する・しな
 
 playbook を実行する前に、httpd を停止しておきます(これはエラーになる場合がありますが無視してください)
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -b -m ansible.builtin.shell -a 'systemctl stop httpd'`
 
 `~/working/when_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook when_playbook.yml`
 
 ```text
@@ -220,7 +220,7 @@ changed: [node1]
 
 では、`~/working/when_playbook.yml` を再度実行します。今度は httpd が起動している状態です。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook when_playbook.yml`
 
 ```text
@@ -270,7 +270,7 @@ skipping: [node1]
 
 まず、配布する `httpd.conf` をサーバーから取得します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible node1 -m ansible.builtin.fetch -a 'src=/etc/httpd/conf/httpd.conf dest=files/httpd.conf flat=yes'`
 
 ```text
@@ -285,7 +285,7 @@ node1 | CHANGED => {
 }
 ```
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ls -l files/`
 
 ```text
@@ -298,7 +298,7 @@ total 16
 
 `~/working/handler_playbook.yml` を以下のように編集します。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/handler_playbook.yml`
 ```yaml
 ---
@@ -328,7 +328,7 @@ total 16
 
 `~/working/handler_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook handler_playbook.yml`
 
 ```text
@@ -350,7 +350,7 @@ node-1  : ok=2 changed=0 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 
 では、`~/working/files/httpd.conf` を編集して、コピーが `changed` となるようにします。以下のようにファイルを編集してください。
 
-![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/edit_file.png)
+![edit_file.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/edit_file.png)
 `~/working/files/httpd.conf`
 ```text
 ServerAdmin root@localhost
@@ -360,7 +360,7 @@ ServerAdmin centos@localhost
 
 再度 `~/working/handler_playbook.yml` を実行します。
 
-![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-automation/main/101_ansible_basic/images/run_command.png)
+![run_command.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/101_ansible_basic/images/run_command.png)
 `ansible-playbook handler_playbook.yml`
 
 ```text
@@ -386,7 +386,7 @@ node-1 : ok=3 changed=2 unreachable=0 failed=0 skipped=0 rescued=0 ignored=0
 
 ## 演習の解答
 
-- [loop\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/loop_playbook.yml)
-- [when\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/when_playbook.yml)
-- [handler\_playbook.yml](https://github.com/irixjp/aitac-automation/blob/main/101_ansible_basic/solutions/handler_playbook.yml)
+- [loop\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/loop_playbook.yml)
+- [when\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/when_playbook.yml)
+- [handler\_playbook.yml](https://github.com/irixjp/aitac-contents/blob/main/101_ansible_basic/solutions/handler_playbook.yml)
 
