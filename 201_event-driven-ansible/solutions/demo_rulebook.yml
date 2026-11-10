@@ -1,0 +1,26 @@
+---
+- name: demo rulebook
+  hosts: node1
+  sources:
+  - ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5000
+
+  rules:
+  - name: message 1 - print event
+    condition: event.payload.message == 1
+    action:
+      print_event:
+        pretty: true
+
+  - name: message 2 - run module
+    condition: event.payload.message == 2
+    action:
+      run_module:
+        name: ansible.builtin.ping
+
+  - name: message 3 - run playbook
+    condition: event.payload.message == 3
+    action:
+      run_playbook:
+        name: demo_playbook.yml

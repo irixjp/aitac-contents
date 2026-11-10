@@ -1,0 +1,18 @@
+---
+- name: get recent logs
+  hosts: all
+  gather_facts: false
+  become: yes
+  vars:
+    service_name: sshd
+    log_lines: 5
+  tasks:
+  - name: get journal of {{ service_name }}
+    ansible.builtin.command:
+      cmd: "journalctl -u {{ service_name }} -n {{ log_lines }} --no-pager"
+    register: ret_journal
+    changed_when: false
+
+  - name: show journal
+    ansible.builtin.debug:
+      var: ret_journal.stdout_lines

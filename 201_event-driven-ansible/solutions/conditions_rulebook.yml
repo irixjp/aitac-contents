@@ -1,0 +1,50 @@
+---
+- name: conditions rulebook
+  hosts: all
+  sources:
+  - ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5000
+
+  rules:
+  - name: event without host
+    condition: event.payload is defined and event.payload.host is not defined
+    action:
+      debug:
+        msg: "host が含まれていないイベントです: {{ event.payload }}"
+
+  - name: cpu critical
+    condition: event.payload.cpu >= 90
+    action:
+      debug:
+        msg: "CPU 使用率が危険域です: {{ event.payload.host }} {{ event.payload.cpu }}%"
+
+  - name: cpu warning
+    condition: event.payload.cpu >= 80
+    action:
+      debug:
+        msg: "CPU 使用率が高くなっています: {{ event.payload.host }} {{ event.payload.cpu }}%"
+
+  - name: critical on important hosts
+    condition: event.payload.severity == "critical" and (event.payload.host == "node1" or event.payload.host == "node2")
+    action:
+      debug:
+        msg: "重要なホストで critical が発生しました: {{ event.payload.host }}"
+
+  - name: critical on other hosts
+    condition: event.payload.severity == "critical" and not (event.payload.host == "node1" or event.payload.host == "node2")
+    action:
+      debug:
+        msg: "その他のホストで critical が発生しました: {{ event.payload.host }}"
+
+  - name: timeout in log
+    condition: event.payload.log is search("timeout", ignorecase=true)
+    action:
+      debug:
+        msg: "タイムアウトのログです: {{ event.payload.host }} {{ event.payload.log }}"
+
+  - name: error log
+    condition: event.payload.log is match("ERROR")
+    action:
+      debug:
+        msg: "エラーのログです: {{ event.payload.host }} {{ event.payload.log }}"

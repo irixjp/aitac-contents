@@ -1,0 +1,31 @@
+---
+- name: ops rulebook
+  hosts: all
+  sources:
+  - ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5000
+    filters:
+    - eda.builtin.insert_hosts_to_meta:
+        host_path: payload.host
+
+  rules:
+  - name: get logs
+    condition: event.payload.action == "logs"
+    action:
+      run_playbook:
+        name: ops_logs.yml
+
+  - name: get service status
+    condition: event.payload.action == "service"
+    action:
+      run_playbook:
+        name: ops_service.yml
+        extra_vars:
+          service_name: "{{ event.payload.service | default('sshd') }}"
+
+  - name: get process
+    condition: event.payload.action == "process"
+    action:
+      run_playbook:
+        name: ops_process.yml

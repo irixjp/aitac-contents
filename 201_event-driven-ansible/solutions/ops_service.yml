@@ -1,0 +1,19 @@
+---
+- name: get service status
+  hosts: all
+  gather_facts: false
+  vars:
+    service_name: sshd
+  tasks:
+  - name: get status of {{ service_name }}
+    ansible.builtin.systemd_service:
+      name: "{{ service_name }}"
+    register: ret_service
+
+  - name: show status
+    ansible.builtin.debug:
+      msg:
+      - "service : {{ service_name }}"
+      - "state   : {{ ret_service.status.ActiveState }} ({{ ret_service.status.SubState }})"
+      - "since   : {{ ret_service.status.ActiveEnterTimestamp }}"
+      - "main pid: {{ ret_service.status.MainPID }}"

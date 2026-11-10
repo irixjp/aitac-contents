@@ -1,0 +1,29 @@
+---
+- name: get process and resource usage
+  hosts: all
+  gather_facts: false
+  tasks:
+  - name: get load average
+    ansible.builtin.command:
+      cmd: uptime
+    register: ret_uptime
+    changed_when: false
+
+  - name: get top processes
+    ansible.builtin.shell:
+      cmd: ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -n 6
+    register: ret_ps
+    changed_when: false
+
+  - name: get disk usage
+    ansible.builtin.command:
+      cmd: df -h /
+    register: ret_df
+    changed_when: false
+
+  - name: show results
+    ansible.builtin.debug:
+      msg:
+      - "{{ ret_uptime.stdout }}"
+      - "{{ ret_ps.stdout_lines }}"
+      - "{{ ret_df.stdout_lines }}"

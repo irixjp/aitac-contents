@@ -1,0 +1,18 @@
+---
+- name: multiple events rulebook
+  hosts: all
+  sources:
+  - ansible.eda.webhook:
+      host: 0.0.0.0
+      port: 5000
+
+  rules:
+  - name: app error after disk full
+    condition:
+      all:
+      - event.payload.alert == "disk_full"
+      - event.payload.alert == "app_error" and event.payload.host == events.m_0.payload.host and event.meta.received_at > events.m_0.meta.received_at
+      timeout: 1 minute
+    action:
+      debug:
+        msg: "{{ events.m_0.payload.host }}: disk_full の後、1 分以内に app_error が発生しました"
