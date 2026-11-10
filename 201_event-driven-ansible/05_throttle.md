@@ -162,6 +162,15 @@ node1                      : ok=2    changed=0    unreachable=0    failed=0    s
 > Note: 一定の数のイベントが届いてから実行する指定もあります。詳しくは [Conditions のドキュメント](https://docs.ansible.com/projects/rulebook/en/latest/conditions.html) の「Throttle actions to counter event storms」を確認してください。
 
 
+## イベントの制御はどこで行うべきか
+
+ここまでの演習では、条件で不要なイベントを見分け、`throttle` で同じイベントの繰り返しを抑えました。しかし、rulebook でイベントを制御することには限界があります。
+
+対応の要らないアラートや、同じアラートを過剰に送り続ける監視システムを考えてみてください。このような監視システムは「オオカミ少年」となり、人が運用している現場では、担当者がアラートを見なくなっていきます。EDA を導入するときに、このような監視システムのイベントを rulebook の条件や `throttle` で選り分けようとするのは、良い手ではありません。rulebook の条件は、イベントを送る側がどのような場合に、どのような値で送ってくるかに依存します。送る側が不正確であるほど条件は複雑になり、本当に必要なイベントを取りこぼしたり、不要なアクションを動かしたりする危険が増えていきます。
+
+イベントの正確さは、まず監視システムなどのイベントを送る側で確保します。しきい値や通知の条件を見直し、対応が必要なときにだけ、必要な情報を含んだイベントが送られるようにします。そのうえで、それでも漏れてしまう重複や想定外のイベントを、rulebook で吸収します。これが rulebook の正しい使い方であり、結果として、自動化を安心して任せられる良いシステムになります。
+
+
 ## 演習の解答
 
 - [throttle\_rulebook.yml](https://github.com/irixjp/aitac-contents/blob/main/201_event-driven-ansible/solutions/throttle_rulebook.yml)

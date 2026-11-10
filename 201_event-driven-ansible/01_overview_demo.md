@@ -11,22 +11,7 @@ EDA は、この「気づく → 判断する → 実行する」の部分を自
 
 EDA では、`rulebook`（ルールブック）と呼ばれるファイルに「どこからイベントを受け取り、どのような条件のときに、何を実行するか」を記述します。rulebook は `ansible-rulebook` コマンドに読み込ませて動かします。
 
-```text
- 監視ツール、アプリケーションなど
-        │
-        │ イベント（JSON）
-        ▼
- ┌─ ansible-rulebook ───────────────────────────────┐
- │  source    : イベントを受け取る（webhook など）    │
- │      ↓                                           │
- │  rules     : 条件（condition）に合うかを判定する   │
- │      ↓                                           │
- │  action    : playbook やモジュールを実行する       │
- └──────────────────────────────────────────────────┘
-        │
-        ▼
-     node1〜6
-```
+![eda_structure.png](https://raw.githubusercontent.com/irixjp/aitac-contents/main/201_event-driven-ansible/images/eda_structure.png)
 
 rulebook は次の 3 つの要素で構成されます。
 
